@@ -46,3 +46,19 @@
 .staff-page #public-site{display:none!important}
 .staff-page #dashboard-app{display:block!important;min-height:100vh}
 .staff-page .staff-access{display:inline-flex;align-items:center;cursor:pointer}
+
+
+/* Reliable media fallbacks: keep the visual composition even if remote videos fail to load. */
+.hero-media{
+  background-image:linear-gradient(90deg,rgba(12,37,32,.18),rgba(12,37,32,.05)),url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2000&q=85');
+  background-size:cover;background-position:center 45%;
+}
+.hero-video{background:transparent}
+.service-image{background-size:cover;background-position:center}
+.image-physio{background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=85')}
+.quote-image{
+  background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85');
+  background-size:cover;background-position:center;
+}
+.hero-video.media-failed,.service-video.media-failed,.quote-video.media-failed{display:none}
+.site-return{display:flex;align-items:center;justify-content:center;text-decoration:none}
