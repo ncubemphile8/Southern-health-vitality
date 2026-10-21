@@ -96,3 +96,13 @@
  #public-site .who-card{min-height:0;padding:23px 21px}
  #public-site .who-card h3{margin-top:12px;font-size:22px}
 }
+
+
+/* Robust visibility fix: public content must remain readable if scroll-reveal JS fails or observer is unsupported. */
+#public-site .reveal,
+#public-site .reveal.visible,
+#public-site .reveal.is-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
