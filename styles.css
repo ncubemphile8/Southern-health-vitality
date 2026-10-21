@@ -106,3 +106,7 @@
   visibility: visible !important;
   transform: none !important;
 }
+
+
+/* Practitioner section without an unverified portrait */
+#public-site .practitioner-section{grid-template-columns:minmax(0,760px);justify-content:center}
