@@ -34,7 +34,11 @@ const sampleAppointments = [
 {id:'APT-206',patientId:'SHV-1007',date:iso(1),time:'11:00',service:'Physiotherapy & rehabilitation',status:'Confirmed',note:'Movement progress review'},
 {id:'APT-207',patientId:'SHV-1006',date:iso(-2),time:'10:00',service:'Physiotherapy & rehabilitation',status:'Completed',note:'Discharge review'},
 {id:'APT-208',patientId:'SHV-1008',date:iso(-1),time:'14:30',service:'Physiotherapy & rehabilitation',status:'Completed',note:'Routine review'}
-];
+,
+{id:'APT-209',patientId:'SHV-1009',date:iso(2),time:'09:00',service:'Physiotherapy & rehabilitation',status:'Confirmed',note:'Sample mobility review'},
+{id:'APT-210',patientId:'SHV-1010',date:iso(0),time:'13:00',service:'Physiotherapy & rehabilitation',status:'Pending',note:'Sample follow-up request'},
+{id:'APT-211',patientId:'SHV-1011',date:iso(3),time:'10:30',service:'Physiotherapy & rehabilitation',status:'Confirmed',note:'Sample shoulder review'},
+{id:'APT-212',patientId:'SHV-1012',date:iso(-3),time:'15:00',service:'Physiotherapy & rehabilitation',status:'Completed',note:'Sample completion review'}];
 const samplePayments = [
 {id:'RC-5201',patientId:'SHV-1001',date:iso(-2),method:'Cash',amount:45,status:'Paid',service:'Follow-up session'},
 {id:'RC-5202',patientId:'SHV-1003',date:iso(-1),method:'Bank transfer',amount:60,status:'Paid',service:'Rehabilitation session'},
@@ -42,11 +46,15 @@ const samplePayments = [
 {id:'RC-5204',patientId:'SHV-1002',date:iso(-9),method:'Cash',amount:50,status:'Paid',service:'Initial consultation'},
 {id:'RC-5205',patientId:'SHV-1005',date:iso(-12),method:'Bank transfer',amount:75,status:'Paid',service:'Wellness consultation'},
 {id:'RC-5206',patientId:'SHV-1008',date:iso(-10),method:'Cash',amount:80,status:'Unpaid',service:'Follow-up balance'}
-];
+,
+{id:'RC-5207',patientId:'SHV-1009',date:iso(-3),method:'Cash',amount:55,status:'Paid',service:'Mobility review'},
+{id:'RC-5208',patientId:'SHV-1010',date:iso(-8),method:'Bank transfer',amount:45,status:'Paid',service:'Rehabilitation session'},
+{id:'RC-5209',patientId:'SHV-1011',date:iso(-2),method:'Mobile money',amount:60,status:'Paid',service:'Shoulder review'},
+{id:'RC-5210',patientId:'SHV-1012',date:iso(-16),method:'Cash',amount:50,status:'Paid',service:'Completion review'}];
 const KEY='shv-demo-v1';
 let state;
 function defaultState(){return {patients:structuredClone(samplePatients),appointments:structuredClone(sampleAppointments),payments:structuredClone(samplePayments),activity:[{text:'<strong>Demo data loaded</strong> — sample records ready for presentation.',date:iso(0)},{text:'<strong>Patient monitoring</strong> — example recovery measures included.',date:iso(-1)},{text:'<strong>Payment register</strong> — fictional transactions included.',date:iso(-2)}]}}
-function loadState(){try{const saved=localStorage.getItem(KEY);if(saved){const parsed=JSON.parse(saved);if(parsed&&Array.isArray(parsed.patients)&&Array.isArray(parsed.appointments)&&Array.isArray(parsed.payments))return parsed}}catch(e){}return defaultState()}
+function loadState(){const base=defaultState();try{const saved=localStorage.getItem(KEY);if(saved){const parsed=JSON.parse(saved);if(parsed&&Array.isArray(parsed.patients)&&Array.isArray(parsed.appointments)&&Array.isArray(parsed.payments)){const merge=(savedRows,baseRows)=>{const ids=new Set(savedRows.map(x=>x.id));return savedRows.concat(baseRows.filter(x=>!ids.has(x.id)))};return {...base,...parsed,patients:merge(parsed.patients,base.patients),appointments:merge(parsed.appointments,base.appointments),payments:merge(parsed.payments,base.payments),activity:Array.isArray(parsed.activity)?parsed.activity:base.activity}}}}catch(e){}return base}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){toast('Browser storage unavailable. Changes may not persist after refresh.')} }
 function logActivity(text){state.activity.unshift({text,date:iso(0)});state.activity=state.activity.slice(0,12);save()}
 function patient(id){return state.patients.find(p=>p.id===id)}
