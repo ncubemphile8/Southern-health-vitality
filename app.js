@@ -37,7 +37,7 @@ const samplePayments = [
 {id:'RC-5203',patientId:'SHV-1004',date:iso(-3),method:'Mobile money',amount:35,status:'Paid',service:'Manual therapy'},
 {id:'RC-5204',patientId:'SHV-1002',date:iso(-9),method:'Cash',amount:50,status:'Paid',service:'Initial consultation'},
 {id:'RC-5205',patientId:'SHV-1005',date:iso(-12),method:'Bank transfer',amount:75,status:'Paid',service:'Wellness consultation'},
-{id:'RC-5206',patientId:'SHV-1008',date:iso(-10),method:'Cash',amount:0,status:'Unpaid',service:'Follow-up balance'}
+{id:'RC-5206',patientId:'SHV-1008',date:iso(-10),method:'Cash',amount:80,status:'Unpaid',service:'Follow-up balance'}
 ];
 const KEY='shv-demo-v1';
 let state;
