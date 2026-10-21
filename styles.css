@@ -62,3 +62,37 @@
 }
 .hero-video.media-failed,.service-video.media-failed,.quote-video.media-failed{display:none}
 .site-return{display:flex;align-items:center;justify-content:center;text-decoration:none}
+
+
+/* Editorial content polish: close accidental gaps and add useful patient-facing guidance. */
+#public-site{overflow:clip}
+#public-site>section{position:relative}
+#public-site .section-pad{padding-top:clamp(64px,8vw,108px);padding-bottom:clamp(64px,8vw,108px)}
+#public-site .services-section{padding-top:clamp(64px,7.5vw,100px);padding-bottom:clamp(64px,8vw,110px)}
+#public-site .quote-band{display:grid;grid-template-columns:1fr 1fr;min-height:410px;background:var(--ink-deep);overflow:hidden}
+#public-site .quote-text{padding:clamp(38px,6vw,82px) clamp(28px,7vw,95px);align-self:center}
+#public-site .quote-image{min-height:410px;height:100%;background-color:#29483e}
+#public-site .who-section{background:var(--paper)}
+#public-site .who-heading{max-width:700px;margin:0 auto 38px;text-align:center}
+#public-site .who-heading .eyebrow{justify-content:center}
+#public-site .who-heading .display-heading{margin:16px 0}
+#public-site .who-heading>p{max-width:610px;margin:0 auto;color:#718077;font-size:13px;line-height:1.9}
+#public-site .who-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+#public-site .who-card{padding:28px 26px 30px;background:#f0f4ed;border:1px solid #e0e8dd;min-height:205px}
+#public-site .who-index{font-size:9px;font-weight:700;letter-spacing:.14em;color:#718e61}
+#public-site .who-card h3{font-family:var(--serif);font-weight:500;font-size:23px;line-height:1.25;margin:20px 0 10px}
+#public-site .who-card p{font-size:12px;line-height:1.85;color:#718077;margin:0}
+#public-site .who-note{margin:23px 0 0;text-align:center;color:#7a887e;font-size:10px;line-height:1.8}
+#public-site .intro-copy>p,#public-site .section-top>p,#public-site .journey-step p,#public-site .practitioner-copy>p,#public-site .book-copy>p,#public-site .contact-main>p{line-height:1.9}
+#public-site .service-body p{font-size:12px;line-height:1.85}
+#public-site .reveal{transition:opacity .65s ease,transform .65s ease}
+@media(max-width:760px){
+ #public-site .section-pad{padding-top:62px;padding-bottom:62px}
+ #public-site .quote-band{grid-template-columns:1fr}
+ #public-site .quote-text{padding:48px 8% 38px}
+ #public-site .quote-image{min-height:245px;height:245px}
+ #public-site .who-heading{margin-bottom:27px}
+ #public-site .who-grid{grid-template-columns:1fr;gap:12px}
+ #public-site .who-card{min-height:0;padding:23px 21px}
+ #public-site .who-card h3{margin-top:12px;font-size:22px}
+}
