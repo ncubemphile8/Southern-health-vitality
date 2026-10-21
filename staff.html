@@ -122,6 +122,38 @@
 
   <dialog id="record-dialog" class="record-dialog"><form id="record-form" method="dialog"><div class="dialog-head"><div><span class="eyebrow" id="dialog-eyebrow">PRACTICE WORKSPACE</span><h2 id="dialog-title">Add a record</h2></div><button type="button" class="dialog-close" id="dialog-close" aria-label="Close dialog">×</button></div><div id="dialog-fields" class="dialog-fields"></div><div class="dialog-actions"><button type="button" class="button button-outline-dark" id="dialog-cancel">Cancel</button><button type="submit" class="button button-dark" id="dialog-submit">Save record ↗</button></div></form></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js"></script>
+  <script>
+/* Independent sidebar navigation fallback for the staff presentation demo. */
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.getElementById('app-nav');
+  const labels = {overview:'Overview',patients:'Patients',monitoring:'Patient monitoring',appointments:'Appointments',payments:'Payments & receipts',followups:'Follow-ups',reports:'Reports'};
+  function openView(name) {
+    if (!document.getElementById('view-' + name)) return;
+    document.querySelectorAll('.app-view').forEach(function (view) {
+      view.classList.toggle('active', view.id === 'view-' + name);
+    });
+    document.querySelectorAll('.app-nav-item[data-view]').forEach(function (button) {
+      const active = button.dataset.view === name;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-current', active ? 'page' : 'false');
+    });
+    const crumb = document.getElementById('breadcrumb-current');
+    if (crumb) crumb.textContent = labels[name] || 'Overview';
+    const sidebar = document.getElementById('app-sidebar');
+    if (window.innerWidth <= 800 && sidebar) sidebar.classList.remove('mobile-open');
+  }
+  if (nav) {
+    nav.querySelectorAll('button[data-view]').forEach(function (button) {
+      button.type = 'button';
+      button.addEventListener('click', function () { openView(button.dataset.view); });
+    });
+  }
+  document.addEventListener('click', function (event) {
+    const target = event.target.closest('[data-view]');
+    if (target && target.closest('#app-nav')) openView(target.dataset.view);
+  });
+});
+</script>
+<script src="app.js"></script>
 </body>
 </html>
